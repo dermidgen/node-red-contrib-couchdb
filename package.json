@@ -4,7 +4,7 @@
   "description"  : "A node-red couchdb node",
   "license"      : "Apache-2.0",
   "dependencies": {
-    "nano": "^6.2.0"
+    "nano": "^9.0.3"
   },
   "author": "Neil Kolban <kolban@us.ibm.com>",
   "keywords": [ "node-red", "couchdb", "ibm" ],
