@@ -98,10 +98,13 @@ module.exports = function(RED) {
     this.on("input", function(msg) {
       // Process the insertion request here
       db.insert(msg.payload, function(err, body) {
-        // Nothing to do on the callback
         if (err) {
           thisNode.warn("[" + config.type + ":" + config.name + "]: Error: " + JSON.stringify(err));
         } else {
+          msg.payload = {
+            ...msg.payload,
+            ...body,
+          }
           thisNode.send(msg)
         }
       }); // End of db.insert
