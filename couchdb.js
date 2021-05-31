@@ -86,7 +86,13 @@ module.exports = function(RED) {
  * * database - The name of the database
  */
   function CouchDBInsertNode(config) {
+    RED.nodes.createNode(this,config)
     var thisNode = this;
+    var opts = {
+      url: config.serverUrl,
+      log: console.log,
+    }
+    var nano = require("nano")(opts);
     var nano = require("nano")(config.serverUrl);
     var db = nano.use(config.database);
     this.on("input", function(msg) {
