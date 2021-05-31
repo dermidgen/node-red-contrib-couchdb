@@ -37,7 +37,7 @@ module.exports = function(RED) {
  * database.
  */
   function CouchDBNode(config) {
-    
+    RED.nodes.createNode(this, config)
     var thisNode = this;
     var nano = require("nano")(config.serverUrl);
     var db = nano.use(config.database);
