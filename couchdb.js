@@ -39,9 +39,12 @@ module.exports = function(RED) {
   function CouchDBNode(config) {
     RED.nodes.createNode(this, config)
     var thisNode = this;
-    var nano = require("nano")(config.serverUrl);
+    var opts = {
+      url: config.serverUrl,
+      log: console.log,
+    }
+    var nano = require("nano")(opts);
     var db = nano.use(config.database);
-    
     this.on("input", function(msg) {
       //
       // Retrieve byId
@@ -77,7 +80,6 @@ module.exports = function(RED) {
         }); // End of db.view
       } // End of byView
     }); // End of on "input"
-    RED.nodes.createNode(thisNode, config);
   } // End of CouchDBNode definition
 
 /**
@@ -93,7 +95,6 @@ module.exports = function(RED) {
       log: console.log,
     }
     var nano = require("nano")(opts);
-    var nano = require("nano")(config.serverUrl);
     var db = nano.use(config.database);
     this.on("input", function(msg) {
       // Process the insertion request here
