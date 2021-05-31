@@ -95,6 +95,8 @@ module.exports = function(RED) {
         // Nothing to do on the callback
         if (err) {
           thisNode.warn("[" + config.type + ":" + config.name + "]: Error: " + JSON.stringify(err));
+        } else {
+          thisNode.send(msg)
         }
       }); // End of db.insert
     }); // End of on "input"
